@@ -1,22 +1,40 @@
 #!/usr/bin/env python3
 from .creature import Creature
-from .transform import TransformCapability
+from .abilities import TransformCapability, HealCapability
 
 
-class FireBase(Creature):
-    def __init__(self, name: str = "Flameling") -> None:
-        super().__init__(name, "Fire")
+class HealBase(Creature, HealCapability):
+    def __init__(self, name: str = "Healer") -> None:
+        super().__init__(name, "Grass")
+        self.didattack = False
+
+    def heal(self) -> str:
+        if self.didattack is True:
+            self.didattack = False
+            return f"{self.name} uses Heal!"
+        return f"{self.name} can only heal after attack."
 
     def attack(self) -> str:
-        return f"{self.name} uses Ember!"
+        if self.didattack is False:
+            self.didattack = True
+        return f"{self.name} uses Leaf Blade!"
 
 
-class FireEvolved(Creature):
-    def __init__(self, name: str = "Pyrodon") -> None:
-        super().__init__(name, "Fire/Fighting")
+class HealEvolved(Creature, HealCapability):
+    def __init__(self, name: str = "Heiler") -> None:
+        super().__init__(name, "Dark/Electric")
+        self.didattack = False
+
+    def heal(self) -> str:
+        if self.didattack is True:
+            self.didattack = False
+            return f"{self.name} uses Heal!"
+        return f"{self.name} can only heal after attack."
 
     def attack(self) -> str:
-        return f"{self.name} uses Fire Punch!"
+        if self.didattack is False:
+            self.didattack = True
+        return f"{self.name} uses Black Thunder!"
 
 
 class MorphBase(Creature, TransformCapability):
