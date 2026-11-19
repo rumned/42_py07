@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import abc
 from .creature import Creature
-from .monsters import FireBase, FireEvolved, MorphBase, MorphEvolved
+from .creature import FireBase, FireEvolved, WaterBase, WaterEvolved
 
 
 class CreatureFactory(abc.ABC):
@@ -22,9 +22,9 @@ class FlameFactory(CreatureFactory):
         return FireEvolved()
 
 
-class TransformCreatureFactory(CreatureFactory):
-    def create_base(self) -> MorphBase:
-        return MorphBase()
+class AquaFactory(CreatureFactory):
+    def create_base(self) -> WaterBase:
+        return WaterBase()
 
-    def create_evolved(self) -> MorphEvolved:
-        return MorphEvolved()
+    def create_evolved(self) -> WaterEvolved:
+        return WaterEvolved()
