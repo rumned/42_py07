@@ -40,3 +40,12 @@ class AggressiveStrategy(BattleStrategy):
     def act(self, entity: typing.Any) -> list[str]:
         self.check(entity)
         return [entity.transform(), entity.attack(), entity.revert()]
+
+
+class DefensiveStrategy(BattleStrategy):
+    def is_valid(self, entity: typing.Any) -> bool:
+        return (callable(getattr(entity, "heal", None)))
+
+    def act(self, entity: typing.Any) -> list[str]:
+        self.check(entity)
+        return [entity.attack(), entity.heal()]

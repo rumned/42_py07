@@ -1,25 +1,14 @@
 #!/usr/bin/env python3
-import abc
-from .creature import Creature
-from .monsters import FireBase, FireEvolved, MorphBase, MorphEvolved
+from ex0.factories import CreatureFactory
+from .monsters import HealBase, HealEvolved, MorphBase, MorphEvolved
 
 
-class CreatureFactory(abc.ABC):
-    @abc.abstractmethod
-    def create_base(self) -> Creature:
-        pass
+class HealingCreatureFactory(CreatureFactory):
+    def create_base(self) -> HealBase:
+        return HealBase()
 
-    @abc.abstractmethod
-    def create_evolved(self) -> Creature:
-        pass
-
-
-class FlameFactory(CreatureFactory):
-    def create_base(self) -> FireBase:
-        return FireBase()
-
-    def create_evolved(self) -> FireEvolved:
-        return FireEvolved()
+    def create_evolved(self) -> HealEvolved:
+        return HealEvolved()
 
 
 class TransformCreatureFactory(CreatureFactory):

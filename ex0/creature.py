@@ -45,4 +45,3 @@ class WaterEvolved(Creature):
 
     def attack(self) -> str:
         return f"{self.name} uses Hydro Blast!"
-

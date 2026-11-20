@@ -1,40 +1,28 @@
 #!/usr/bin/env python3
-from .creature import Creature
 from .abilities import TransformCapability, HealCapability
+from ex0.creature import Creature
 
 
 class HealBase(Creature, HealCapability):
-    def __init__(self, name: str = "Healer") -> None:
+    def __init__(self, name: str = "Sproutling") -> None:
         super().__init__(name, "Grass")
-        self.didattack = False
 
     def heal(self) -> str:
-        if self.didattack is True:
-            self.didattack = False
-            return f"{self.name} uses Heal!"
-        return f"{self.name} can only heal after attack."
+        return f"{self.name} uses Leech Seed! It heals itself!"
 
     def attack(self) -> str:
-        if self.didattack is False:
-            self.didattack = True
-        return f"{self.name} uses Leaf Blade!"
+        return f"{self.name} uses Vine Whip!"
 
 
 class HealEvolved(Creature, HealCapability):
-    def __init__(self, name: str = "Heiler") -> None:
-        super().__init__(name, "Dark/Electric")
-        self.didattack = False
+    def __init__(self, name: str = "Bloomelle") -> None:
+        super().__init__(name, "Grass/Poison")
 
     def heal(self) -> str:
-        if self.didattack is True:
-            self.didattack = False
-            return f"{self.name} uses Heal!"
-        return f"{self.name} can only heal after attack."
+        return f"{self.name} uses Absorb! It heals itself by a large amount!"
 
     def attack(self) -> str:
-        if self.didattack is False:
-            self.didattack = True
-        return f"{self.name} uses Black Thunder!"
+        return f"{self.name} uses Leaf Blade!"
 
 
 class MorphBase(Creature, TransformCapability):
